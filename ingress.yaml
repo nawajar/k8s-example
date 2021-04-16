@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: ghost-app-ingress
+  annotations:
+    kubernetes.io/ingress.class: traefik
+    traefik.frontend.rule.type: PathPrefixStrip
+    traefik.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - host: ptpapidev.thaibevapp.com
+    http:
+      paths:
+      - path: /ptpaglie/test/myapp
+        backend:
+          serviceName: ghost-app
+          servicePort: 80
